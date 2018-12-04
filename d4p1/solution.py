@@ -9,8 +9,6 @@ timestamped_events = [(datetime.strptime(line[1:17], '%Y-%m-%d %H:%M'), line[19:
 timestamped_events.sort()
 
 sleep_times = defaultdict(list)
-guard_id = -1
-sleeps_since = -1
 for event_time, event in timestamped_events:
     if event.startswith('Guard'):
         guard_id = event.split(' ')[1].strip('#')

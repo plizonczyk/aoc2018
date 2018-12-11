@@ -1,11 +1,8 @@
-with open('easy_input') as fp:
+with open('input') as fp:
     data = fp.readlines()
 
 positions = [tuple(map(int, line.split('<')[1].split('>', 1)[0].split(','))) for line in data]
 velocities = [tuple(map(int, line.split('<')[-1].rstrip('>\n').split(','))) for line in data]
-
-for pos, vel in zip(positions, velocities):
-    print(pos, vel)
 
 def advance_positions(positions, velocities, n):
     return [(pos[0] + vel[0] * n, pos[1] + vel[1] * n) for pos, vel in zip(positions, velocities)]
@@ -20,13 +17,13 @@ def print_message(positions):
     for x, y in minus_offset:
         grid[y][x] = '#'
 
+    print(len(grid))
     for line in grid:
         print(''.join(line))
 
     print('----------------------------------------------------------------')
 
-print_message(advance_positions(positions, velocities, 0))
-print_message(advance_positions(positions, velocities, 1))
-print_message(advance_positions(positions, velocities, 2))
-print_message(advance_positions(positions, velocities, 3))
-print_message(advance_positions(positions, velocities, 4))
+start = 10570
+while input():
+    print_message(advance_positions(positions, velocities, start))
+    start += 1
